@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CJ Mode | تصميم حسب الطلب</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="متجر CJ Mode - تصاميم مخصصة حسب الطلب: ملابس، أكواب، شنط، هوديات، ستيكرات و更多. اطلب الآن واحصل على تصميمك الفريد." />
+    <meta name="keywords" content="تصميم حسب الطلب, ملابس مخصصة, شنط, هوديات, تيشيرتات, أكواب, ستيكرات, CJ Mode" />
+    <meta property="og:title" content="CJ Mode - تصميم حسب الطلب" />
+    <meta property="og:description" content="نصنعها كما تريدها - منتجات مخصصة بأفضل جودة" />
+    <meta property="og:image" content="581154154_17844465294610090_5311287597297863583_n.jpg" />
+    <meta property="og:url" content="https://cjmode.com" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="STYLE.css" />
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar container" id="navbar">
+        <div class="brand">
+            <i class="fas fa-crown"></i> CJ Store
+        </div>
+        <div class="nav-links">
+            <a href="#products">المنتجات</a>
+            <a href="#comments">التقييمات</a>
+            <a href="#contact">تواصل</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الليلي">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="https://wa.me/9647808122983?text=أريد%20طلب%20تصميم" target="_blank" class="social-icon" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/cj.mode76" target="_blank" class="social-icon" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+            <button class="btn-order" id="openOrderBtn"><i class="fas fa-user"></i> <span id="userDisplay">اطلب</span></button>
+            <button class="btn-icon-order" id="iconOrderBtn" aria-label="فتح نموذج الطلب"><i class="fas fa-shopping-cart"></i></button>
+        </div>
+    </nav>
+
+    <!-- ========== ORDER OVERLAY ========== -->
+    <div class="order-overlay" id="orderOverlay">
+        <div class="order-card">
+            <div class="head">
+                <h2>📋 تفاصيل الطلب</h2>
+                <button class="close-btn" id="closeOrderBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="form-group">
+                <label>الاسم</label>
+                <input id="custName" type="text" placeholder="أدخل اسمك" />
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف</label>
+                <input id="custPhone" type="tel" placeholder="مثال: 0780xxxxxx" />
+                <small id="phoneError" style="color:#b91c1c;display:none;">⚠️ يرجى إدخال رقم صحيح (يبدأ بـ 07 أو 01)</small>
+            </div>
+            <div class="order-summary" id="orderSummary">
+                <strong>المنتج:</strong> <span id="selectedProductDisplay">لم يتم الاختيار</span>
+                <div id="cartSummary" style="margin-top:6px;font-size:0.85rem;color:#555;"></div>
+            </div>
+            <div class="form-group">
+                <label>تفاصيل إضافية</label>
+                <textarea id="orderDetails" placeholder="اكتب أي تفاصيل إضافية هنا..."></textarea>
+            </div>
+            <button class="btn-submit" id="submitOrderBtn">
+                <i class="fas fa-spinner fa-spin" style="display:none;"></i>
+                <span>إرسال الطلب عبر واتساب</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ========== LOADING OVERLAY ========== -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>جاري التوجيه...</p>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero container fade-up visible" id="hero">
+        <img class="hero-logo" src="581154154_17844465294610090_5311287597297863583_n.jpg" alt="CJ Store" loading="lazy" />
+        <div class="hero-badge">✨ تصميم حسب الطلب</div>
+        <h1>نصنعها كما تريدها</h1>
+        <p>جميع منتجاتنا تُنفَّذ حسب طلبك — ملابس، أكواب، شنط، هوديات، وكل ما يخطر ببالك. اختر التصميم، ونحن ننفذه بأفضل جودة.</p>
+        <a class="btn-cta" href="https://wa.me/9647808122983?text=أريد%20طلب%20تصميم" target="_blank">📩 ابدأ طلبك الآن</a>
+    </section>
+
+    <!-- ========== INFO CARDS ========== -->
+    <div class="container info-grid fade-up visible delay-1">
+        <div class="info-card"><i class="fas fa-paint-brush"></i><h4>تصميم مخصص</h4><p>ننفذ أفكارك بدقة واحترافية</p></div>
+        <div class="info-card"><i class="fas fa-rocket"></i><h4>سرعة في التنفيذ</h4><p>نحرص على تجهيز طلبك بأسرع وقت</p></div>
+        <div class="info-card"><i class="fas fa-heart"></i><h4>جودة عالية</h4><p>نستخدم أفضل المواد لضمان رضاك</p></div>
+    </div>
+
+    <!-- ========== STEPS ========== -->
+    <div class="container steps fade-up visible delay-2">
+        <div class="step"><div class="num">1</div><h4>اختر المنتج</h4><p>من القائمة التي أمامك</p></div>
+        <div class="step"><div class="num">2</div><h4>أرسل الطلب</h4><p>اكتب التفاصيل واترك الباقي لنا</p></div>
+        <div class="step"><div class="num">3</div><h4>ننفذ لك</h4><p>بجودة عالية وبحسب ذوقك</p></div>
+    </div>
+
+    <!-- ========== PRODUCTS ========== -->
+    <div style="text-align:center; margin-top:20px;">
+        <h2 id="products">🛍️ اختر منتجك</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="clothing">ملابس</button>
+            <button class="filter-btn" data-filter="accessories">إكسسوارات</button>
+            <button class="filter-btn" data-filter="cups">أكواب</button>
+        </div>
+        <div class="cart-actions">
+            <button class="cart-toggle-btn" id="cartToggleBtn">🛒 عربة التسوق (<span id="cartCount">0</span>)</button>
+            <button class="share-btn" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> مشاركة</button>
+        </div>
+    </div>
+    <div class="container product-grid" id="productGrid">
+        <!-- شنط -->
+        <div class="product-card" data-label="شنط" data-category="accessories">
+            <img src="641741472_3331353673691305_6468941084539222706_n.jpg" alt="شنط" loading="lazy" />
+            <div class="label">شنط</div>
+            <div class="badge">جديد</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="شنط">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="شنط"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- شفقات -->
+        <div class="product-card" data-label="شفقات" data-category="accessories">
+            <img src="641397725_716929758054827_8834570721556423667_n.jpg" alt="شفقات" loading="lazy" />
+            <div class="label">شفقات</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="شفقات">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="شفقات"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- تيشيرتات -->
+        <div class="product-card" data-label="تيشيرتات" data-category="clothing">
+            <img src="631320809_916500827516328_2378052820384240401_n.jpg" alt="تيشيرتات" loading="lazy" />
+            <div class="label">تيشيرتات</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="تيشيرتات">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="تيشيرتات"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- هوديات -->
+        <div class="product-card" data-label="هوديات" data-category="clothing">
+            <img src="618865420_1411448067368420_5312810990269825522_n.jpg" alt="هوديات" loading="lazy" />
+            <div class="label">هوديات</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="هوديات">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="هوديات"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- أكواب -->
+        <div class="product-card" data-label="أكواب" data-category="cups">
+            <img src="581393529_2026190111531427_2256548003449435306_n.jpg" alt="أكواب" loading="lazy" />
+            <div class="label">أكواب</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="أكواب">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="أكواب"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- بلوزات -->
+        <div class="product-card" data-label="بلوزات" data-category="clothing">
+            <img src="581103136_808992068430823_7699748390926662749_n.jpg" alt="بلوزات" loading="lazy" />
+            <div class="label">بلوزات</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="بلوزات">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="بلوزات"><i class="fas fa-plus"></i></button>
+        </div>
+        <!-- ستيكرات -->
+        <div class="product-card" data-label="ستيكرات" data-category="accessories">
+            <img src="e476fbf08ca1aa942746a59d305fe8e2.jpg" alt="ستيكرات" loading="lazy" />
+            <div class="label">ستيكرات</div>
+            <div class="check"><i class="fas fa-check"></i></div>
+            <button class="quick-order-btn" data-product="ستيكرات">اطلب سريع</button>
+            <button class="add-to-cart-btn" data-product="ستيكرات"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-right"></i></button>
+        <button class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-left"></i></button>
+        <img src="" alt="صورة مكبرة" id="lightboxImage" />
+    </div>
+
+    <!-- ========== GALLERY ========== -->
+    <h2 style="text-align:center;">📸 معرض الأعمال</h2>
+    <div class="container gallery-grid" id="galleryGrid">
+        <!-- سيتم ملؤها بواسطة JavaScript من localStorage -->
+    </div>
+
+    <!-- ========== COMMENTS ========== -->
+    <div class="container comments-section" id="comments">
+        <h3>💬 أترك تعليقك</h3>
+        <p class="sub">قيم المنتج وشاركنا رأيك</p>
+        <div class="rating-input">
+            <span>تقييمك:</span>
+            <div class="stars" id="ratingStars">
+                <i class="far fa-star" data-value="1"></i>
+                <i class="far fa-star" data-value="2"></i>
+                <i class="far fa-star" data-value="3"></i>
+                <i class="far fa-star" data-value="4"></i>
+                <i class="far fa-star" data-value="5"></i>
+            </div>
+            <span id="ratingDisplay"></span>
+        </div>
+        <button class="clear-btn" id="clearCommentsBtn">🗑️ حذف تعليقي</button>
+        <form class="comment-form" id="commentForm">
+            <input type="text" id="commentName" placeholder="الاسم" required />
+            <input type="email" id="commentEmail" placeholder="البريد الإلكتروني (اختياري)" />
+            <textarea id="commentMessage" rows="3" placeholder="رسالتك..." required></textarea>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button type="submit">إرسال التعليق</button>
+                <button type="button" id="editCommentBtn" style="background:#facc15;color:#1a1a1a;">تعديل</button>
+                <button type="button" id="replyCommentBtn" style="background:#555;color:#fff;">رد</button>
+            </div>
+        </form>
+        <div class="comment-status" id="commentStatus"></div>
+        <div class="comment-list" id="commentList"></div>
+    </div>
+
+    <!-- ========== ADMIN PANEL ========== -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-card">
+            <div class="admin-head">
+                <h2>🔐 لوحة التحكم</h2>
+                <button class="admin-close" id="adminClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="admin-body">
+                <div class="admin-stats">
+                    <div class="stat-box"><span>👥 زوار اليوم</span><strong id="statVisitors">0</strong></div>
+                    <div class="stat-box"><span>📝 تعليقات</span><strong id="statComments">0</strong></div>
+                    <div class="stat-box"><span>📦 طلبات</span><strong id="statOrders">0</strong></div>
+                </div>
+                <div class="admin-section">
+                    <h3>📋 قائمة التعليقات</h3>
+                    <div id="adminCommentList"></div>
+                </div>
+                <div class="admin-section">
+                    <h3>📦 الطلبات المسجلة</h3>
+                    <button class="admin-add-order" id="adminAddOrder">+ إضافة طلب</button>
+                    <div id="adminOrderList"></div>
+                </div>
+                <!-- ======== قسم إدارة معرض الصور الجديد ======== -->
+                <div class="admin-section">
+                    <h3>🖼️ إدارة معرض الصور</h3>
+                    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+                        <input type="text" id="newImageUrl" placeholder="أدخل رابط الصورة (URL)" style="flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-primary);min-width:200px;" />
+                        <button id="addImageBtn" class="admin-add-order" style="background:#2563eb;border:none;padding:8px 20px;border-radius:20px;color:#fff;font-weight:700;cursor:pointer;">➕ إضافة</button>
+                    </div>
+                    <div id="adminGalleryList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:10px;margin-top:10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="container footer" id="contact">
+        <span>© 2026 CJ Store — جميع الحقوق محفوظة</span>
+        <a href="https://wa.me/9647808122983?text=أريد%20طلب%20تصميم" target="_blank">📱 تواصل معنا عبر واتساب</a>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="SCRIPT.js"></script>
+</body>
+</html>
